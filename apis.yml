@@ -1,8 +1,8 @@
 aid: rainbow
 name: Rainbow
 description: >-
-  Use the Rainbow for Developers to enrich your applications with chat, group
-  chat, voice, video, file-sharing, telephony PBX features and more. 
+  Use the Rainbow for Developers to enrich your applications with chat, group chat,
+  voice, video, file-sharing, telephony PBX features and more.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -18,8 +18,8 @@ apis:
   - aid: rainbow:rainbow
     name: Rainbow
     description: >-
-      Use the Rainbow for Developers to enrich your applications with chat,
-      group chat, voice, video, file-sharing, telephony PBX features and more. 
+      Use the Rainbow for Developers to enrich your applications with chat, group
+      chat, voice, video, file-sharing, telephony PBX features and more.
     humanURL: ' https://developers.openrainbow.com/'
     tags:
       - API
