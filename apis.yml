@@ -7,8 +7,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-02-06'
 modified: '2025-02-06'
 url: >-
@@ -21,8 +20,7 @@ apis:
       Use the Rainbow for Developers to enrich your applications with chat, group
       chat, voice, video, file-sharing, telephony PBX features and more.
     humanURL: ' https://developers.openrainbow.com/'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://developers.openrainbow.com/'
