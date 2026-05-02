@@ -1,15 +1,23 @@
 aid: rainbow
 name: Rainbow
 description: >-
-  Use the Rainbow for Developers to enrich your applications with chat, group chat,
-  voice, video, file-sharing, telephony PBX features and more.
+  Rainbow is a CPaaS platform from Alcatel-Lucent Enterprise that lets developers
+  enrich applications with chat, group chat, voice, video, file sharing, and
+  telephony PBX features through SDKs and REST APIs.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags: []
+tags:
+  - Communications
+  - CPaaS
+  - Chat
+  - Voice
+  - Video
+  - Telephony
+  - Messaging
 created: '2025-02-06'
-modified: '2025-02-06'
+modified: '2026-04-28'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -17,13 +25,29 @@ apis:
   - aid: rainbow:rainbow
     name: Rainbow
     description: >-
-      Use the Rainbow for Developers to enrich your applications with chat, group
-      chat, voice, video, file-sharing, telephony PBX features and more.
-    humanURL: ' https://developers.openrainbow.com/'
-    tags: []
+      The Rainbow developer platform exposes REST APIs and SDKs for embedding
+      chat, group chat, voice, video, file sharing, and telephony PBX
+      capabilities into applications across web, mobile, and server runtimes.
+    humanURL: https://developers.openrainbow.com/
+    tags:
+      - Communications
+      - CPaaS
+      - Chat
+      - Voice
+      - Video
+      - Telephony
     properties:
       - type: Documentation
-        url: ' https://developers.openrainbow.com/'
+        url: https://developers.openrainbow.com/
+      - type: SignUp
+        url: https://hub.openrainbow.com/
+common:
+  - type: Website
+    url: https://www.openrainbow.com
+  - type: Developer
+    url: https://developers.openrainbow.com/
+  - type: SignUp
+    url: https://hub.openrainbow.com/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
