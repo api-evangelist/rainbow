@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/contacts?search=John&limit=10",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "5e8b12a3c4d5e6f7a8b9c0d1",
+          "displayName": "John Smith",
+          "firstName": "John",
+          "lastName": "Smith",
+          "emails": [
+            { "value": "john.smith@company.com", "type": "work" }
+          ],
+          "phoneNumbers": [
+            { "value": "+1-555-123-4567", "type": "work" }
+          ],
+          "presence": {
+            "status": "online",
+            "statusMessage": "",
+            "since": "2026-05-02T09:30:00Z"
+          },
+          "company": "Acme Corp",
+          "jobTitle": "Senior Engineer"
+        }
+      ],
+      "total": 1,
+      "limit": 10,
+      "offset": 0
+    }
+  }
+}

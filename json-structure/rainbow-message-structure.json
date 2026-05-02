@@ -1,0 +1,44 @@
+{
+  "title": "Rainbow Messaging API Structure",
+  "description": "JSON structure documentation for Rainbow CPaaS messaging entities",
+  "version": "1.0",
+  "structures": [
+    {
+      "name": "Message",
+      "description": "A chat message in Rainbow (1-to-1 or group bubble)",
+      "fields": [
+        { "name": "id", "type": "string", "description": "Unique message identifier", "required": true },
+        { "name": "content", "type": "string", "description": "Text content", "required": true },
+        { "name": "from", "type": "string", "description": "Sender contact ID", "required": true },
+        { "name": "to", "type": "string", "description": "Recipient contact or bubble ID", "required": true },
+        { "name": "type", "type": "string", "description": "chat or groupchat", "required": true },
+        { "name": "timestamp", "type": "string (date-time)", "description": "ISO 8601 creation time", "required": true },
+        { "name": "status", "type": "string", "description": "sent, delivered, or read", "required": false }
+      ]
+    },
+    {
+      "name": "Bubble",
+      "description": "A group chat room in Rainbow",
+      "fields": [
+        { "name": "id", "type": "string", "description": "Unique bubble identifier", "required": true },
+        { "name": "name", "type": "string", "description": "Bubble name", "required": true },
+        { "name": "topic", "type": "string", "description": "Bubble topic or description", "required": false },
+        { "name": "owner", "type": "string", "description": "Owner contact ID", "required": true },
+        { "name": "users", "type": "array<string>", "description": "Member contact IDs", "required": true },
+        { "name": "createdAt", "type": "string (date-time)", "description": "Creation timestamp", "required": true },
+        { "name": "updatedAt", "type": "string (date-time)", "description": "Last update timestamp", "required": false }
+      ]
+    },
+    {
+      "name": "Conversation",
+      "description": "A conversation thread (1-to-1 or bubble)",
+      "fields": [
+        { "name": "id", "type": "string", "description": "Unique conversation identifier", "required": true },
+        { "name": "type", "type": "string", "description": "user or bubble", "required": true },
+        { "name": "peerId", "type": "string", "description": "Contact ID or bubble ID", "required": true },
+        { "name": "lastMessage", "type": "object (Message)", "description": "Most recent message", "required": false },
+        { "name": "unreadCount", "type": "integer", "description": "Unread message count", "required": false }
+      ]
+    }
+  ]
+}

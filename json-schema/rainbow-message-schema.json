@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openrainbow.com/schemas/message",
+  "title": "Rainbow Message",
+  "description": "Schema for a Rainbow CPaaS message object",
+  "type": "object",
+  "required": ["id", "content", "from", "to", "type", "timestamp"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique message identifier"
+    },
+    "content": {
+      "type": "string",
+      "description": "Text content of the message"
+    },
+    "from": {
+      "type": "string",
+      "description": "Sender's contact ID"
+    },
+    "to": {
+      "type": "string",
+      "description": "Recipient contact ID or bubble ID"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["chat", "groupchat"],
+      "description": "Message type"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["sent", "delivered", "read"],
+      "description": "Message delivery status"
+    }
+  }
+}

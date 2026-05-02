@@ -1,0 +1,99 @@
+vocabulary:
+  name: Rainbow CPaaS Vocabulary
+  description: >-
+    Domain vocabulary for Rainbow CPaaS by Alcatel-Lucent Enterprise,
+    covering communications platform concepts, API conventions, and
+    collaboration terminology.
+  version: '1.0'
+  created: '2026-05-02'
+  terms:
+    - term: CPaaS
+      definition: >-
+        Communications Platform as a Service. A cloud-based platform that
+        enables developers to add real-time communications features
+        (voice, video, chat) to their applications via APIs and SDKs.
+      tags:
+        - Platform
+        - Core
+
+    - term: Bubble
+      definition: >-
+        A group chat room in Rainbow. Bubbles can have multiple participants,
+        topics, and file sharing. They are the equivalent of group channels
+        or rooms in other messaging platforms.
+      tags:
+        - Messaging
+        - Core
+
+    - term: Presence
+      definition: >-
+        A user's real-time availability status. Rainbow supports online, away,
+        busy, do not disturb (dnd), and offline states, with an optional
+        custom status message.
+      tags:
+        - Collaboration
+        - Core
+
+    - term: Bearer Token
+      definition: >-
+        OAuth2 Bearer token used for API authentication in Rainbow. Obtained
+        via the /oauth/token endpoint using client_credentials or password
+        grant types.
+      tags:
+        - Authentication
+        - Security
+
+    - term: Conversation
+      definition: >-
+        A threaded exchange of messages between a user and a contact (1-to-1)
+        or within a bubble (group). Rainbow conversations maintain message
+        history and unread counts.
+      tags:
+        - Messaging
+        - Core
+
+    - term: Rainbow Application
+      definition: >-
+        A registered developer application on the Rainbow platform. Each
+        application has a unique client ID and secret used for OAuth2
+        authentication. Applications can be public (user-facing) or private
+        (server-to-server).
+      tags:
+        - Developer
+        - Platform
+
+    - term: ALE
+      definition: >-
+        Alcatel-Lucent Enterprise. The company behind Rainbow CPaaS.
+        ALE provides enterprise communications infrastructure and the
+        Rainbow platform.
+      tags:
+        - Company
+        - Core
+
+    - term: PBX
+      definition: >-
+        Private Branch Exchange. Rainbow integrates with enterprise PBX
+        systems to enable telephony features including call routing, voicemail,
+        and conference calling via API.
+      tags:
+        - Telephony
+        - Enterprise
+
+    - term: SDK
+      definition: >-
+        Software Development Kit. Rainbow provides SDKs for Node.js, C#, iOS,
+        Android, and React Native to simplify integration of communication
+        features into applications.
+      tags:
+        - Developer
+        - Tools
+
+    - term: Enduser API
+      definition: >-
+        The Rainbow REST API surface accessible by end users of an application.
+        Paths use the /enduser/v1.0/ prefix. Contrasted with admin APIs
+        which use elevated privilege scopes.
+      tags:
+        - API
+        - Developer

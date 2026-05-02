@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/messages",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "content": "Hello! Can we schedule a call for tomorrow?",
+      "to": "5e8b12a3c4d5e6f7a8b9c0d1",
+      "type": "chat"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "6a7b8c9d0e1f2a3b4c5d6e7f",
+      "content": "Hello! Can we schedule a call for tomorrow?",
+      "from": "4c5d6e7f8a9b0c1d2e3f4a5b",
+      "to": "5e8b12a3c4d5e6f7a8b9c0d1",
+      "type": "chat",
+      "timestamp": "2026-05-02T12:00:00Z",
+      "status": "sent"
+    }
+  }
+}

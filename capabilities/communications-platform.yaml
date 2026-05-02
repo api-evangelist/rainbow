@@ -1,0 +1,252 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Rainbow Communications Platform
+  description: >-
+    Unified communications platform capability combining Rainbow CPaaS messaging,
+    contacts, and directory. Used by developers building enterprise communication
+    applications with chat, group collaboration, presence awareness, and
+    contact management. Powered by Alcatel-Lucent Enterprise Rainbow APIs.
+  tags:
+    - Communications
+    - CPaaS
+    - Messaging
+    - Chat
+    - Contacts
+    - Presence
+    - Collaboration
+    - Unified Communications
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAINBOW_BEARER_TOKEN: RAINBOW_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: messaging
+      location: ./shared/messaging.yaml
+    - import: contacts
+      location: ./shared/contacts.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: communications-platform-api
+      description: Unified REST API for Rainbow CPaaS communications and collaboration.
+      resources:
+        - path: /v1/messages
+          name: messages
+          description: Send and retrieve chat messages
+          operations:
+            - method: POST
+              name: send-message
+              description: Send a message to a contact or group
+              call: "messaging.send-message"
+              with:
+                content: "rest.content"
+                to: "rest.to"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/conversations
+          name: conversations
+          description: List and manage conversations
+          operations:
+            - method: GET
+              name: list-conversations
+              description: List user conversations
+              call: "messaging.list-conversations"
+              with:
+                limit: "rest.limit"
+                offset: "rest.offset"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/bubbles
+          name: bubbles
+          description: Group chat rooms
+          operations:
+            - method: GET
+              name: list-bubbles
+              description: List group chat rooms
+              call: "messaging.list-bubbles"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-bubble
+              description: Create a new group chat room
+              call: "messaging.create-bubble"
+              with:
+                name: "rest.name"
+                topic: "rest.topic"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts
+          name: contacts
+          description: Contact directory search
+          operations:
+            - method: GET
+              name: search-contacts
+              description: Search Rainbow directory
+              call: "contacts.search-contacts"
+              with:
+                search: "rest.search"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts/{id}
+          name: contact-detail
+          description: Individual contact profiles
+          operations:
+            - method: GET
+              name: get-contact
+              description: Get contact profile and presence
+              call: "contacts.get-contact"
+              with:
+                contactId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/users/me
+          name: my-profile
+          description: Authenticated user's profile
+          operations:
+            - method: GET
+              name: get-my-profile
+              description: Get own profile
+              call: "contacts.get-my-profile"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/users/me/presence
+          name: my-presence
+          description: User presence management
+          operations:
+            - method: PUT
+              name: update-presence
+              description: Update presence status
+              call: "contacts.update-presence"
+              with:
+                presence: "rest.presence"
+                status: "rest.status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: communications-platform-mcp
+      transport: http
+      description: MCP server for AI-assisted enterprise communications and collaboration.
+      tools:
+        - name: send-message
+          description: >-
+            Send a chat message to a Rainbow contact (1-to-1) or into a
+            group bubble. Supports text messages via REST API.
+          hints:
+            readOnly: false
+            destructive: false
+          call: "messaging.send-message"
+          with:
+            content: "tools.content"
+            to: "tools.to"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-conversations
+          description: List recent conversations for the authenticated Rainbow user
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.list-conversations"
+          with:
+            limit: "tools.limit"
+            offset: "tools.offset"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-conversation-messages
+          description: Get message history for a specific Rainbow conversation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.get-conversation-messages"
+          with:
+            conversationId: "tools.conversationId"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-bubbles
+          description: List group chat rooms (bubbles) the user belongs to in Rainbow
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.list-bubbles"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-bubble
+          description: Create a new Rainbow group chat room (bubble) with optional members
+          hints:
+            readOnly: false
+            destructive: false
+          call: "messaging.create-bubble"
+          with:
+            name: "tools.name"
+            topic: "tools.topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-contacts
+          description: Search Rainbow enterprise directory for contacts by name, email, or phone
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "contacts.search-contacts"
+          with:
+            search: "tools.search"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-contact
+          description: Get Rainbow contact profile including presence status and contact details
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "contacts.get-contact"
+          with:
+            contactId: "tools.contactId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-my-profile
+          description: Get the authenticated Rainbow user's own profile
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "contacts.get-my-profile"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-presence
+          description: Update presence status in Rainbow (online, away, busy, dnd)
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "contacts.update-presence"
+          with:
+            presence: "tools.presence"
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."

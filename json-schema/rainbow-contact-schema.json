@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openrainbow.com/schemas/contact",
+  "title": "Rainbow Contact",
+  "description": "Schema for a Rainbow CPaaS contact / user profile",
+  "type": "object",
+  "required": ["id", "displayName"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique contact identifier"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Contact's display name"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string", "format": "email" },
+          "type": { "type": "string", "enum": ["work", "personal", "other"] }
+        }
+      }
+    },
+    "phoneNumbers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "type": { "type": "string", "enum": ["work", "mobile", "home", "other"] }
+        }
+      }
+    },
+    "presence": {
+      "$ref": "#/$defs/Presence"
+    },
+    "company": {
+      "type": "string"
+    },
+    "jobTitle": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "Presence": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["online", "away", "busy", "dnd", "offline"]
+        },
+        "statusMessage": { "type": "string" },
+        "since": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

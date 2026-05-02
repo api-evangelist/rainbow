@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "rainbow": "https://openrainbow.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Message": "rainbow:Message",
+    "Conversation": "rainbow:Conversation",
+    "Bubble": "rainbow:Bubble",
+    "Contact": "schema:Person",
+    "UserProfile": "schema:Person",
+    "Presence": "rainbow:Presence",
+    "Application": "rainbow:Application",
+
+    "id": "@id",
+    "displayName": "schema:name",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "emails": {
+      "@id": "schema:email",
+      "@container": "@list"
+    },
+    "phoneNumbers": {
+      "@id": "schema:telephone",
+      "@container": "@list"
+    },
+    "company": "schema:memberOf",
+    "jobTitle": "schema:jobTitle",
+    "content": "schema:text",
+    "from": {
+      "@id": "schema:sender",
+      "@type": "@id"
+    },
+    "to": {
+      "@id": "schema:recipient",
+      "@type": "@id"
+    },
+    "timestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "type": "rainbow:messageType",
+    "status": "rainbow:deliveryStatus",
+    "presence": {
+      "@id": "rainbow:presenceStatus",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "topic": "schema:about",
+    "owner": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "users": {
+      "@id": "schema:member",
+      "@container": "@list"
+    }
+  }
+}

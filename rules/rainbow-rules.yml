@@ -1,0 +1,67 @@
+extends: spectral:oas
+rules:
+  rainbow-bearer-auth:
+    description: Rainbow APIs must use Bearer token authentication
+    message: Security scheme must use HTTP Bearer authentication
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              enum: [http, oauth2]
+          required: [type]
+
+  rainbow-versioned-paths:
+    description: All Rainbow API paths must include a version segment (v1.0, v2.0, etc.)
+    message: "API path must include version segment like /v1.0/"
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z]+/v[0-9]+\\.[0-9]+"
+
+  rainbow-pagination-params:
+    description: Collection endpoints should support limit and offset pagination
+    message: GET collection endpoints should include limit and offset query parameters
+    severity: warn
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: truthy
+
+  rainbow-operation-ids:
+    description: All operations must have an operationId in camelCase
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  rainbow-response-data-wrapper:
+    description: Rainbow API responses should wrap primary data in a data field
+    message: API response should use data envelope pattern
+    severity: warn
+    given: "$.components.schemas[?(@.properties.data)]"
+    then:
+      function: truthy
+
+  rainbow-error-code-msg:
+    description: Error responses must include code and msg fields
+    message: Error schema must have code (integer) and msg (string) fields
+    severity: warn
+    given: "$.components.schemas[?(@.title == 'ErrorResponse' || contains(@, 'Error'))].properties"
+    then:
+      function: truthy
+
+  rainbow-tags-required:
+    description: All operations must include at least one tag
+    message: Operation must have at least one tag
+    severity: warn
+    given: "$.paths[*][*].tags"
+    then:
+      function: truthy

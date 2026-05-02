@@ -1,0 +1,248 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Rainbow Messaging API
+  description: >-
+    Rainbow CPaaS messaging capabilities including one-to-one chat, group
+    bubbles, and conversation history management.
+  tags:
+    - Messaging
+    - Chat
+    - Bubbles
+    - Conversations
+    - CPaaS
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAINBOW_BEARER_TOKEN: RAINBOW_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: messaging
+      baseUri: https://openrainbow.com/api/rainbow
+      description: Rainbow Messaging REST API
+      authentication:
+        type: bearer
+        token: "{{RAINBOW_BEARER_TOKEN}}"
+      resources:
+        - name: messages
+          path: /enduser/v1.0/messages
+          description: Send chat messages
+          operations:
+            - name: send-message
+              method: POST
+              description: Send a message to a contact or bubble
+              body:
+                type: json
+                data:
+                  content: "{{tools.content}}"
+                  to: "{{tools.to}}"
+                  type: "{{tools.type}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: conversations
+          path: /enduser/v1.0/conversations
+          description: Manage conversations
+          operations:
+            - name: list-conversations
+              method: GET
+              description: List conversations for the authenticated user
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Max results to return
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: Pagination offset
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: conversation-messages
+          path: /enduser/v1.0/conversations/{conversationId}/messages
+          description: Get conversation message history
+          operations:
+            - name: get-conversation-messages
+              method: GET
+              description: Get message history for a conversation
+              inputParameters:
+                - name: conversationId
+                  in: path
+                  type: string
+                  required: true
+                  description: Conversation ID
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Max messages to return
+                - name: before
+                  in: query
+                  type: string
+                  required: false
+                  description: ISO 8601 timestamp for pagination
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: bubbles
+          path: /enduser/v1.0/bubbles
+          description: Manage group chat rooms
+          operations:
+            - name: list-bubbles
+              method: GET
+              description: List bubbles the user belongs to
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-bubble
+              method: POST
+              description: Create a new group chat room
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  topic: "{{tools.topic}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: rainbow-messaging-rest
+      resources:
+        - path: /v1/messages
+          name: messages
+          operations:
+            - method: POST
+              name: send-message
+              description: Send a message
+              call: "messaging.send-message"
+              with:
+                content: "rest.content"
+                to: "rest.to"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/conversations
+          name: conversations
+          operations:
+            - method: GET
+              name: list-conversations
+              description: List conversations
+              call: "messaging.list-conversations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/bubbles
+          name: bubbles
+          operations:
+            - method: GET
+              name: list-bubbles
+              description: List group rooms
+              call: "messaging.list-bubbles"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-bubble
+              description: Create group room
+              call: "messaging.create-bubble"
+              with:
+                name: "rest.name"
+                topic: "rest.topic"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: rainbow-messaging-mcp
+      transport: http
+      tools:
+        - name: send-message
+          description: Send a chat message to a contact or group bubble
+          hints:
+            readOnly: false
+            destructive: false
+          call: "messaging.send-message"
+          with:
+            content: "tools.content"
+            to: "tools.to"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-conversations
+          description: List recent conversations for the user
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.list-conversations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-conversation-messages
+          description: Get message history for a specific conversation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.get-conversation-messages"
+          with:
+            conversationId: "tools.conversationId"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-bubbles
+          description: List group chat rooms the user belongs to
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "messaging.list-bubbles"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-bubble
+          description: Create a new group chat room
+          hints:
+            readOnly: false
+            destructive: false
+          call: "messaging.create-bubble"
+          with:
+            name: "tools.name"
+            topic: "tools.topic"
+          outputParameters:
+            - type: object
+              mapping: "$."
