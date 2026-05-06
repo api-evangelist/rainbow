@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,147 +9,72 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Rainbow
 providerId: rainbow
-publisherName: Rainbow
-serviceCategory: API
+publisherName: Alcatel-Lucent Enterprise
+serviceCategory: Communications
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Communications
   - CPaaS
-  - Chat
-  - Voice
-  - Video
-  - Telephony
-  - Messaging
-  - Collaboration
-  - Unified Communications
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Rainbow API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+notes: Rainbow does not publish a per-API meter or invoice surface; FinOps mapping is anchored to the
+  ALE production contract.
+description: FOCUS-aligned FinOps for Rainbow CPaaS is contract-based; chat, voice, video, and telephony
+  consumption is billed under the ALE customer agreement rather than a public per-API tariff.
+sources:
+  - https://www.al-enterprise.com/en/products/communications/rainbow
+  - https://developers.openrainbow.com/
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Enterprise CPaaS Contract
   billingFrequency: Monthly
-  billingCurrency: USD
+  billingCurrency: USD/EUR
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
   ServiceName: Rainbow
-  ServiceCategory: Developer Tools / API
-  ProviderName: Rainbow
-  PublisherName: Rainbow
-  InvoiceIssuerName: Rainbow
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
+  ServiceCategory: Communications
+  ProviderName: Alcatel-Lucent Enterprise
+  PublisherName: Alcatel-Lucent Enterprise
+  InvoiceIssuerName: Alcatel-Lucent Enterprise
+  BillingCurrency: USD/EUR
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
-    aggregation: sum
+  - name: licensed_users
+    description: Active Rainbow user accounts on the customer's CPaaS deployment.
+    unit: seat
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - tenant
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: telephony_minutes
+    description: Voice and PBX minutes routed through the Rainbow telephony surface.
+    unit: minute
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - tenant
+      - destination_country
+  - name: api_engagement
+    description: API and SDK usage covered under the ALE production contract; not exposed as a public
+      per-call meter.
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Rainbow Application Portal API
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Applications
-      - Administration
-      - OAuth
-      - Provisioning
-    serviceName: Rainbow Application Portal API
-    serviceCategory: API
-  - name: Rainbow Messaging API
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Messaging
-      - Chat
-      - Conversations
-      - Bubbles
-    serviceName: Rainbow Messaging API
-    serviceCategory: API
-  - name: Rainbow Contacts API
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Contacts
-      - Directory
-      - Search
-    serviceName: Rainbow Contacts API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - tenant
+principles:
+  - name: Visibility
+    description: Pull licensed-user and telephony-minute reports from the ALE Rainbow administration
+      console; production deployments expose tenant-level usage to administrators.
+  - name: Allocation
+    description: Allocate Rainbow seat and telephony spend to the consuming business unit or location;
+      tenant scoping makes per-department attribution straightforward.
+  - name: Optimization
+    description: Right-size licensed-user counts at renewal and tune telephony routing to minimize cross-region
+      egress; consolidate developer hub experimentation under a shared sandbox tenant.
+  - name: Accountability
+    description: Communications IT owns the Rainbow contract; finance reviews seat and minute consumption
+      against the ALE agreement.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
