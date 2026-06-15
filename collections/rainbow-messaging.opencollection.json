@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rainbow Messaging API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a chat message to a contact or into a bubble (group room). Supports text messages and file attachments."
+        },
+        {
+          "info": {
+            "name": "Get Conversation Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the conversation"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return messages before this timestamp (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns the message history for a specific conversation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/conversations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of conversations to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Returns the list of conversations for the authenticated user, ordered by most recent activity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bubbles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Bubbles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/bubbles",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of bubbles to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Returns the list of group chat rooms (bubbles) the authenticated user is a member of."
+        },
+        {
+          "info": {
+            "name": "Create Bubble",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/bubbles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group chat room (bubble). The creator becomes the owner."
+        },
+        {
+          "info": {
+            "name": "Get Bubble",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/bubbles/:bubbleId",
+            "params": [
+              {
+                "name": "bubbleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the bubble"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific bubble (group room)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

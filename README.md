@@ -1,11 +1,8 @@
-# Rainbow
+# Rainbow (rainbow)
 
-Rainbow is a CPaaS platform from Alcatel-Lucent Enterprise (ALE) that lets developers enrich applications with chat, group chat, voice, video, file sharing, and telephony PBX features through more than 200 APIs, REST interfaces, and multi-language SDKs.
+Rainbow is a CPaaS platform from Alcatel-Lucent Enterprise (ALE) that lets developers enrich applications with chat, group chat, voice, video, file sharing, and telephony PBX features through more than 200 APIs, REST interfaces, and multi-language SDKs including Node.js, C#, iOS, and Android.
 
-- **Website:** [openrainbow.com](https://www.openrainbow.com)
-- **Developer Portal:** [developers.openrainbow.com](https://developers.openrainbow.com/)
-- **Sign Up:** [hub.openrainbow.com](https://hub.openrainbow.com/)
-- **GitHub:** [github.com/Rainbow-CPaaS](https://github.com/Rainbow-CPaaS)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -15,82 +12,100 @@ Rainbow is a CPaaS platform from Alcatel-Lucent Enterprise (ALE) that lets devel
 
 ## Tags
 
-Communications, CPaaS, Chat, Voice, Video, Telephony, Messaging, Collaboration, Unified Communications
+- Communications
+- CPaaS
+- Chat
+- Voice
+- Video
+- Telephony
+- Messaging
+- Collaboration
+- Unified Communications
+
+## Timestamps
+
+- **Created:** 2025-02-06
+- **Modified:** 2026-05-19
 
 ## APIs
 
-### Application Portal API
-Register and manage Rainbow developer applications, configure OAuth clients, and perform administrative operations.
+### Rainbow Application Portal API
 
-- **OpenAPI:** [openapi/rainbow-application-openapi.yml](openapi/rainbow-application-openapi.yml)
+The Rainbow Application Portal REST API allows developers to manage Rainbow applications, register OAuth clients, and access provisioning and administration functions for the Rainbow platform.
 
-### Messaging API
-Send and receive messages, manage conversations, and handle group chat bubbles.
+- **Human URL:** [https://developers.openrainbow.com/doc/hub/api](https://developers.openrainbow.com/doc/hub/api)
+- **Base URL:** `https://openrainbow.com/api/rainbow`
 
-- **OpenAPI:** [openapi/rainbow-messaging-openapi.yml](openapi/rainbow-messaging-openapi.yml)
+#### Tags
 
-### Contacts API
-Search, list, and manage contacts and user presence in the Rainbow directory.
+- Applications
+- Administration
+- OAuth
+- Provisioning
 
-- **OpenAPI:** [openapi/rainbow-contacts-openapi.yml](openapi/rainbow-contacts-openapi.yml)
+#### Properties
 
-## SDKs
+- [Documentation](https://developers.openrainbow.com/doc/hub/api)
+- [OpenAPI](openapi/rainbow-application-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rainbow-application.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rainbow-application.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| SDK | Repository |
-|---|---|
-| Node.js | [Rainbow-Node-SDK](https://github.com/Rainbow-CPaaS/Rainbow-Node-SDK) |
-| iOS | [Rainbow-iOS-SDK](https://github.com/Rainbow-CPaaS/Rainbow-iOS-SDK) |
-| C# | [Rainbow-CSharp-SDK-Samples](https://github.com/Rainbow-CPaaS/Rainbow-CSharp-SDK-Samples) |
-| CLI | [Rainbow-CLI-SDK](https://github.com/Rainbow-CPaaS/Rainbow-CLI-SDK) |
+### Rainbow Messaging API
 
-## Artifacts
+REST API for sending and receiving messages, managing conversations, and handling chat bubbles (group rooms) within the Rainbow platform.
 
-### OpenAPI Specifications
-| File | Description |
-|---|---|
-| [openapi/rainbow-application-openapi.yml](openapi/rainbow-application-openapi.yml) | Application Portal API |
-| [openapi/rainbow-messaging-openapi.yml](openapi/rainbow-messaging-openapi.yml) | Messaging API |
-| [openapi/rainbow-contacts-openapi.yml](openapi/rainbow-contacts-openapi.yml) | Contacts API |
+- **Human URL:** [https://developers.openrainbow.com/](https://developers.openrainbow.com/)
+- **Base URL:** `https://openrainbow.com/api/rainbow`
 
-### JSON Schema
-| File | Description |
-|---|---|
-| [json-schema/rainbow-message-schema.json](json-schema/rainbow-message-schema.json) | Message entity schema |
-| [json-schema/rainbow-contact-schema.json](json-schema/rainbow-contact-schema.json) | Contact entity schema |
+#### Tags
 
-### JSON Structure
-| File | Description |
-|---|---|
-| [json-structure/rainbow-message-structure.json](json-structure/rainbow-message-structure.json) | Messaging entities structure |
+- Messaging
+- Chat
+- Conversations
+- Bubbles
 
-### JSON-LD
-| File | Description |
-|---|---|
-| [json-ld/rainbow-context.jsonld](json-ld/rainbow-context.jsonld) | Linked data context mapping |
+#### Properties
 
-### Examples
-| File | Description |
-|---|---|
-| [examples/rainbow-send-message-example.json](examples/rainbow-send-message-example.json) | Send message example |
-| [examples/rainbow-search-contacts-example.json](examples/rainbow-search-contacts-example.json) | Search contacts example |
-| [examples/rainbow-get-oauth-token-example.json](examples/rainbow-get-oauth-token-example.json) | OAuth token example |
+- [Documentation](https://developers.openrainbow.com/doc/hub/api)
+- [OpenAPI](openapi/rainbow-messaging-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rainbow-messaging.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rainbow-messaging.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### Rules
-| File | Description |
-|---|---|
-| [rules/rainbow-rules.yml](rules/rainbow-rules.yml) | Spectral ruleset for Rainbow API conventions |
+### Rainbow Contacts API
 
-### Capabilities
-| File | Description |
-|---|---|
-| [capabilities/communications-platform.yaml](capabilities/communications-platform.yaml) | Unified communications platform workflow |
-| [capabilities/shared/messaging.yaml](capabilities/shared/messaging.yaml) | Shared Messaging API definition |
-| [capabilities/shared/contacts.yaml](capabilities/shared/contacts.yaml) | Shared Contacts API definition |
+REST API for searching, listing, and managing contacts in the Rainbow directory, including enterprise contacts and public profiles.
 
-### Vocabulary
-| File | Description |
-|---|---|
-| [vocabulary/rainbow-vocabulary.yml](vocabulary/rainbow-vocabulary.yml) | CPaaS domain vocabulary |
+- **Human URL:** [https://developers.openrainbow.com/](https://developers.openrainbow.com/)
+- **Base URL:** `https://openrainbow.com/api/rainbow`
+
+#### Tags
+
+- Contacts
+- Directory
+- Search
+
+#### Properties
+
+- [Documentation](https://developers.openrainbow.com/doc/hub/api)
+- [OpenAPI](openapi/rainbow-contacts-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rainbow-contacts.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rainbow-contacts.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/openrainbow)
+- [Website](https://www.openrainbow.com)
+- [Developer](https://developers.openrainbow.com/)
+- [Sign Up](https://hub.openrainbow.com/)
+- [Git Hub](https://github.com/Rainbow-CPaaS)
+- [S D K Node](https://github.com/Rainbow-CPaaS/Rainbow-Node-SDK)
+- [S D K I O S](https://github.com/Rainbow-CPaaS/Rainbow-iOS-SDK)
+- [S D K C S](https://github.com/Rainbow-CPaaS/Rainbow-CSharp-SDK-Samples)
+- [C L I](https://github.com/Rainbow-CPaaS/Rainbow-CLI-SDK)
+- [Spectral Rules](rules/rainbow-rules.yml)
+- [JSON-LD](json-ld/rainbow-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Vocabulary](vocabulary/rainbow-vocabulary.yml)
+- [L L Ms Txt](https://developers.openrainbow.com/llms.txt)
 
 ## Maintainers
 
