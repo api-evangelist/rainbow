@@ -80,7 +80,7 @@ common:
     url: https://www.openrainbow.com
   - type: Developer
     url: https://developers.openrainbow.com/
-  - type: SignUp
+  - type: Signup
     url: https://hub.openrainbow.com/
   - type: GitHub
     url: https://github.com/Rainbow-CPaaS
@@ -98,7 +98,7 @@ common:
     url: json-ld/rainbow-context.jsonld
   - type: Vocabulary
     url: vocabulary/rainbow-vocabulary.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developers.openrainbow.com/llms.txt
 maintainers:
   - FN: Kin Lane
