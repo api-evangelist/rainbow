@@ -74,6 +74,12 @@ apis:
       - type: OpenAPI
         url: openapi/rainbow-contacts-openapi.yml
 common:
+  - type: TrustCenter
+    url: security/rainbow-trust-center.yml
+  - type: DomainSecurity
+    url: security/rainbow-domain-security.yml
+  - type: Authentication
+    url: authentication/rainbow-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/openrainbow
   - type: Website
