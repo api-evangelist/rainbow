@@ -74,6 +74,8 @@ apis:
       - type: OpenAPI
         url: openapi/rainbow-contacts-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/rainbow-agentic-access.yml
   - type: TrustCenter
     url: security/rainbow-trust-center.yml
   - type: DomainSecurity
