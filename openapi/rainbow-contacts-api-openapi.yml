@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Contacts API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Contacts
+  description: Manage and search contacts
+paths:
+  /enduser/v1.0/contacts:
+    get:
+      operationId: searchContacts
+      summary: Search Contacts
+      description: Search for contacts in the Rainbow directory by name, email, or other attributes. Returns enterprise and public directory results.
+      tags:
+      - Contacts
+      parameters:
+      - name: search
+        in: query
+        required: false
+        description: Search keyword (name, email, or phone number)
+        schema:
+          type: string
+          example: John
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Contact search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /enduser/v1.0/contacts/{contactId}:
+    get:
+      operationId: getContact
+      summary: Get Contact
+      description: Returns the profile and presence information for a specific contact.
+      tags:
+      - Contacts
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        description: Unique identifier of the contact
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contact profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ContactListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Contact:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique contact identifier
+        displayName:
+          type: string
+          description: Contact's display name
+        firstName:
+          type: string
+        lastName:
+          type: string
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                format: email
+              type:
+                type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              type:
+                type: string
+        presence:
+          $ref: '#/components/schemas/Presence'
+        company:
+          type: string
+        jobTitle:
+          type: string
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+    ContactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contact'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

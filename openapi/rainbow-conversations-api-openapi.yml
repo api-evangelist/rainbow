@@ -1,0 +1,140 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Conversations API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Conversations
+  description: Manage one-to-one and group conversations
+paths:
+  /enduser/v1.0/conversations:
+    get:
+      operationId: listConversations
+      summary: List Conversations
+      description: Returns the list of conversations for the authenticated user, ordered by most recent activity.
+      tags:
+      - Conversations
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of conversations to return
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of conversations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    MessageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        content:
+          type: string
+          description: Message text content
+        from:
+          type: string
+          description: Sender's contact ID
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+        timestamp:
+          type: string
+          format: date-time
+          description: Message creation timestamp
+        status:
+          type: string
+          enum:
+          - sent
+          - delivered
+          - read
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique conversation identifier
+        type:
+          type: string
+          enum:
+          - user
+          - bubble
+        peerId:
+          type: string
+          description: Contact ID or bubble ID
+        lastMessage:
+          $ref: '#/components/schemas/MessageResponse'
+        unreadCount:
+          type: integer
+          description: Number of unread messages
+    ConversationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

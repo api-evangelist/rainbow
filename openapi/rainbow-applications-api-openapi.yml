@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Applications
+  description: Register and manage developer applications
+paths:
+  /applications/v1.0/applications:
+    get:
+      operationId: listApplications
+      summary: List Applications
+      description: Returns the list of Rainbow applications registered by the authenticated developer account.
+      tags:
+      - Applications
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of applications to return
+        schema:
+          type: integer
+          default: 25
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of registered applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createApplication
+      summary: Create Application
+      description: Register a new Rainbow application to obtain API credentials.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+      responses:
+        '200':
+          description: Application created with API credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /applications/v1.0/applications/{appId}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns the details of a specific registered application.
+      tags:
+      - Applications
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        description: Unique identifier of the application
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteApplication
+      summary: Delete Application
+      description: Delete a registered application and revoke its credentials.
+      tags:
+      - Applications
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        description: Unique identifier of the application
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application deleted
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ApplicationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Application'
+    ApplicationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        total:
+          type: integer
+    CreateApplicationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name for the application
+        description:
+          type: string
+          description: Application description
+        type:
+          type: string
+          enum:
+          - public
+          - private
+          default: private
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique application identifier
+        name:
+          type: string
+          description: Application name
+        appSecret:
+          type: string
+          description: Application secret (only returned on creation)
+        type:
+          type: string
+          enum:
+          - public
+          - private
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+          - suspended
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

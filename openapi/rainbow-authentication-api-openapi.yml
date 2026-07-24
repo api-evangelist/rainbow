@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Authentication API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth2 token management
+paths:
+  /oauth/token:
+    post:
+      operationId: getOAuthToken
+      summary: Get OAuth Token
+      description: Exchange application credentials for a Bearer token to authenticate API requests. Supports client_credentials and password grant types.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  - password
+                  description: OAuth2 grant type
+                client_id:
+                  type: string
+                  description: Application client ID
+                client_secret:
+                  type: string
+                  description: Application client secret
+                username:
+                  type: string
+                  description: User email (for password grant)
+                password:
+                  type: string
+                  description: User password (for password grant)
+      responses:
+        '200':
+          description: OAuth token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthTokenResponse'
+        '400':
+          description: Bad Request - invalid credentials or grant type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    OAuthTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer token for API authentication
+        token_type:
+          type: string
+          enum:
+          - Bearer
+        expires_in:
+          type: integer
+          description: Token expiration in seconds
+        scope:
+          type: string
+          description: Granted scopes
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

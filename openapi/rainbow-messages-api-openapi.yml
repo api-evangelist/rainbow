@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Messages API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Messages
+  description: Send and receive chat messages
+paths:
+  /enduser/v1.0/messages:
+    post:
+      operationId: sendMessage
+      summary: Send Message
+      description: Send a chat message to a contact or into a bubble (group room). Supports text messages and file attachments.
+      tags:
+      - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        '400':
+          description: Bad Request - invalid message payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /enduser/v1.0/conversations/{conversationId}/messages:
+    get:
+      operationId: getConversationMessages
+      summary: Get Conversation Messages
+      description: Returns the message history for a specific conversation.
+      tags:
+      - Messages
+      parameters:
+      - name: conversationId
+        in: path
+        required: true
+        description: Unique identifier of the conversation
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of messages to return
+        schema:
+          type: integer
+          default: 50
+          maximum: 200
+      - name: before
+        in: query
+        required: false
+        description: Return messages before this timestamp (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Message history for the conversation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    MessageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        content:
+          type: string
+          description: Message text content
+        from:
+          type: string
+          description: Sender's contact ID
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+        timestamp:
+          type: string
+          format: date-time
+          description: Message creation timestamp
+        status:
+          type: string
+          enum:
+          - sent
+          - delivered
+          - read
+    SendMessageRequest:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          description: Text content of the message
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+          default: chat
+          description: Message type - chat for 1-to-1, groupchat for bubbles
+    MessageListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageResponse'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

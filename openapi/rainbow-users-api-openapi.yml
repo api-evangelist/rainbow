@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Users API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Users
+  description: User profile and presence operations
+paths:
+  /enduser/v1.0/users/me:
+    get:
+      operationId: getMyProfile
+      summary: Get My Profile
+      description: Returns the authenticated user's own profile information.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Authenticated user's profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateMyProfile
+      summary: Update My Profile
+      description: Updates the authenticated user's profile information.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /enduser/v1.0/users/me/presence:
+    put:
+      operationId: updatePresence
+      summary: Update Presence
+      description: Update the authenticated user's presence status (available, away, busy, dnd).
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePresenceRequest'
+      responses:
+        '200':
+          description: Presence updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    PresenceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Presence'
+    UpdatePresenceRequest:
+      type: object
+      required:
+      - presence
+      properties:
+        presence:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+        status:
+          type: string
+          description: Custom status message
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        loginEmail:
+          type: string
+          format: email
+        presence:
+          $ref: '#/components/schemas/Presence'
+        company:
+          type: string
+        jobTitle:
+          type: string
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+    UserProfileResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProfile'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint

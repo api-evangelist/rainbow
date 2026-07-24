@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Rainbow Application Portal Applications Bubbles API
+  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  version: '1.0'
+  contact:
+    url: https://developers.openrainbow.com/
+  x-tags:
+  - Applications
+  - Administration
+  - OAuth
+  - Provisioning
+  - CPaaS
+servers:
+- url: https://openrainbow.com/api/rainbow
+  description: Rainbow Production API
+security:
+- BearerAuth: []
+tags:
+- name: Bubbles
+  description: Manage group chat rooms (bubbles)
+paths:
+  /enduser/v1.0/bubbles:
+    get:
+      operationId: listBubbles
+      summary: List Bubbles
+      description: Returns the list of group chat rooms (bubbles) the authenticated user is a member of.
+      tags:
+      - Bubbles
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of bubbles to return
+        schema:
+          type: integer
+          default: 25
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of bubbles (group rooms)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createBubble
+      summary: Create Bubble
+      description: Creates a new group chat room (bubble). The creator becomes the owner.
+      tags:
+      - Bubbles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBubbleRequest'
+      responses:
+        '200':
+          description: Bubble created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /enduser/v1.0/bubbles/{bubbleId}:
+    get:
+      operationId: getBubble
+      summary: Get Bubble
+      description: Returns details of a specific bubble (group room).
+      tags:
+      - Bubbles
+      parameters:
+      - name: bubbleId
+        in: path
+        required: true
+        description: Unique identifier of the bubble
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Bubble details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Bubble not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    BubbleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Bubble'
+    BubbleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bubble'
+        total:
+          type: integer
+    Bubble:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique bubble identifier
+        name:
+          type: string
+          description: Bubble name
+        topic:
+          type: string
+          description: Bubble topic
+        owner:
+          type: string
+          description: Contact ID of the bubble owner
+        users:
+          type: array
+          items:
+            type: string
+          description: List of member contact IDs
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CreateBubbleRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the bubble
+        topic:
+          type: string
+          description: Topic or description of the bubble
+        users:
+          type: array
+          items:
+            type: string
+          description: Initial list of contact IDs to invite
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from OAuth2 token endpoint
