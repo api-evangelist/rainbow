@@ -5,9 +5,22 @@ description: >-
   group chat, voice, video, file sharing, and telephony PBX features through more than 200 APIs, REST interfaces, and
   multi-language SDKs including Node.js, C#, iOS, and Android.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rainbow.png
 tags:
   - Communications
   - CPaaS
@@ -23,56 +36,90 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: rainbow:rainbow-application-api
-    name: Rainbow Application Portal API
-    description: >-
-      The Rainbow Application Portal REST API allows developers to manage Rainbow applications, register OAuth clients,
-      and access provisioning and administration functions for the Rainbow platform.
-    humanURL: https://developers.openrainbow.com/doc/hub/api
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Applications
-      - Administration
-      - OAuth
-      - Provisioning
-    properties:
-      - type: Documentation
-        url: https://developers.openrainbow.com/doc/hub/api
-      - type: OpenAPI
-        url: openapi/rainbow-application-openapi.yml
-  - aid: rainbow:rainbow-messaging-api
-    name: Rainbow Messaging API
-    description: >-
-      REST API for sending and receiving messages, managing conversations, and handling chat bubbles (group rooms)
-      within the Rainbow platform.
-    humanURL: https://developers.openrainbow.com/
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Messaging
-      - Chat
-      - Conversations
-      - Bubbles
-    properties:
-      - type: Documentation
-        url: https://developers.openrainbow.com/doc/hub/api
-      - type: OpenAPI
-        url: openapi/rainbow-messaging-openapi.yml
-  - aid: rainbow:rainbow-contacts-api
-    name: Rainbow Contacts API
-    description: >-
-      REST API for searching, listing, and managing contacts in the Rainbow directory, including enterprise contacts and
-      public profiles.
-    humanURL: https://developers.openrainbow.com/
-    baseURL: https://openrainbow.com/api/rainbow
-    tags:
-      - Contacts
-      - Directory
-      - Search
-    properties:
-      - type: Documentation
-        url: https://developers.openrainbow.com/doc/hub/api
-      - type: OpenAPI
-        url: openapi/rainbow-contacts-openapi.yml
+- aid: rainbow:rainbow-applications-api
+  name: Rainbow Applications API
+  description: Register and manage developer applications
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-applications-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-authentication-api
+  name: Rainbow Authentication API
+  description: OAuth2 token management
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-bubbles-api
+  name: Rainbow Bubbles API
+  description: Manage group chat rooms (bubbles)
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Bubbles
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-bubbles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-contacts-api
+  name: Rainbow Contacts API
+  description: Manage and search contacts
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-conversations-api
+  name: Rainbow Conversations API
+  description: Manage one-to-one and group conversations
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-messages-api
+  name: Rainbow Messages API
+  description: Send and receive chat messages
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
+- aid: rainbow:rainbow-users-api
+  name: Rainbow Users API
+  description: User profile and presence operations
+  humanURL: https://developers.openrainbow.com/doc/hub/api
+  baseURL: https://openrainbow.com/api/rainbow
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbow-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.openrainbow.com/doc/hub/api
 common:
   - type: AgenticAccess
     url: agentic-access/rainbow-agentic-access.yml
