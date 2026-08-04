@@ -1,0 +1,26 @@
+{
+  "provider": "rainbow",
+  "sources": [
+    "rainbow-applications-api-openapi.yml",
+    "rainbow-authentication-api-openapi.yml",
+    "rainbow-bubbles-api-openapi.yml",
+    "rainbow-contacts-api-openapi.yml",
+    "rainbow-conversations-api-openapi.yml",
+    "rainbow-messages-api-openapi.yml",
+    "rainbow-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "rainbow-applications-api-openapi.yml",
+    "rainbow-authentication-api-openapi.yml",
+    "rainbow-bubbles-api-openapi.yml",
+    "rainbow-contacts-api-openapi.yml",
+    "rainbow-conversations-api-openapi.yml",
+    "rainbow-messages-api-openapi.yml",
+    "rainbow-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
