@@ -1,0 +1,421 @@
+{
+  "item": [
+    {
+      "id": "aca8f60c-0918-445d-bc77-c0c099f2ed21",
+      "name": "Contacts",
+      "description": {
+        "content": "Manage and search contacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6477121c-4a6c-4bff-8199-9519842553a9",
+          "name": "Search Contacts",
+          "request": {
+            "name": "Search Contacts",
+            "description": {
+              "content": "Search for contacts in the Rainbow directory by name, email, or other attributes. Returns enterprise and public directory results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enduser",
+                "v1.0",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search keyword (name, email, or phone number)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f732d02-6c7f-41d1-a612-0af4e15386f7",
+              "name": "Contact search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "John"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emails\": [\n        {\n          \"value\": \"zcW@xTNFWqqxETVncoMWupztPJ.ejj\",\n          \"type\": \"string\"\n        },\n        {\n          \"value\": \"89mhry@QoHBEsGvwDPdESSuAMQZgFgzJaJIkYi.lx\",\n          \"type\": \"string\"\n        }\n      ],\n      \"phoneNumbers\": [\n        {\n          \"value\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"value\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"presence\": {\n        \"status\": \"offline\",\n        \"statusMessage\": \"string\",\n        \"since\": \"1996-03-21T14:27:38.963Z\"\n      },\n      \"company\": \"string\",\n      \"jobTitle\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"emails\": [\n        {\n          \"value\": \"KHQUJTE3C8Vxv@zHjkDkPRqgEmHSutNHxXiyEdHyUJhe.wu\",\n          \"type\": \"string\"\n        },\n        {\n          \"value\": \"dSDZs3vMR@OfwFcJaMnqUAJIAPsOVaVbKxkA.dyi\",\n          \"type\": \"string\"\n        }\n      ],\n      \"phoneNumbers\": [\n        {\n          \"value\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"value\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"presence\": {\n        \"status\": \"away\",\n        \"statusMessage\": \"string\",\n        \"since\": \"2014-07-09T17:20:27.855Z\"\n      },\n      \"company\": \"string\",\n      \"jobTitle\": \"string\"\n    }\n  ],\n  \"total\": 6828,\n  \"limit\": 4910,\n  \"offset\": 6742\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc8e4d4f-9db5-43ec-a8a6-8f2a6b580454",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "John"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1615,\n  \"msg\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d6cb3d4-e755-4b77-9f4d-b35cfcf2ceca",
+          "name": "Get Contact",
+          "request": {
+            "name": "Get Contact",
+            "description": {
+              "content": "Returns the profile and presence information for a specific contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enduser",
+                "v1.0",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactId",
+                  "description": "(Required) Unique identifier of the contact"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cfb78d1-eda4-4970-9b10-dce0dc7d7339",
+              "name": "Contact profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactId",
+                      "description": "(Required) Unique identifier of the contact"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"displayName\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"emails\": [\n      {\n        \"value\": \"SSLT8hi6pfE8Of@MRnjtBCRydTkSEnWqvEAPjbxjDrNSIMw.lu\",\n        \"type\": \"string\"\n      },\n      {\n        \"value\": \"6WH3@WDHrOKIi.avl\",\n        \"type\": \"string\"\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"presence\": {\n      \"status\": \"offline\",\n      \"statusMessage\": \"string\",\n      \"since\": \"2002-08-23T13:32:54.484Z\"\n    },\n    \"company\": \"string\",\n    \"jobTitle\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aae2e89-8b09-432e-9a20-04b6666d445d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactId",
+                      "description": "(Required) Unique identifier of the contact"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1615,\n  \"msg\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bced266-9ca0-4be8-acc5-baf88fcaa4d0",
+              "name": "Contact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactId",
+                      "description": "(Required) Unique identifier of the contact"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1615,\n  \"msg\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://openrainbow.com/api/rainbow",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "08ee829b-8ab4-4ab1-a1ad-e6c33b0cf9f1",
+    "name": "Rainbow Application Portal Applications Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.",
+      "type": "text/plain"
+    }
+  }
+}

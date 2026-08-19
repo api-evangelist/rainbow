@@ -1,0 +1,199 @@
+{
+  "item": [
+    {
+      "id": "02711a2d-3a39-48d6-aca9-da2801c512ff",
+      "name": "Conversations",
+      "description": {
+        "content": "Manage one-to-one and group conversations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1ac6934-a3a8-446d-b149-b2a1a3508c59",
+          "name": "List Conversations",
+          "request": {
+            "name": "List Conversations",
+            "description": {
+              "content": "Returns the list of conversations for the authenticated user, ordered by most recent activity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enduser",
+                "v1.0",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of conversations to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8792c469-32fa-4cbf-90b0-6834200ef4a4",
+              "name": "List of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"user\",\n      \"peerId\": \"string\",\n      \"lastMessage\": {\n        \"id\": \"string\",\n        \"content\": \"string\",\n        \"from\": \"string\",\n        \"to\": \"string\",\n        \"type\": \"groupchat\",\n        \"timestamp\": \"2023-10-16T09:08:33.112Z\",\n        \"status\": \"delivered\"\n      },\n      \"unreadCount\": 758\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"user\",\n      \"peerId\": \"string\",\n      \"lastMessage\": {\n        \"id\": \"string\",\n        \"content\": \"string\",\n        \"from\": \"string\",\n        \"to\": \"string\",\n        \"type\": \"groupchat\",\n        \"timestamp\": \"2026-01-08T20:23:10.979Z\",\n        \"status\": \"read\"\n      },\n      \"unreadCount\": 4788\n    }\n  ],\n  \"total\": 7317,\n  \"limit\": 8730,\n  \"offset\": 4959\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "466ae53c-37b0-4708-93db-ed0efdb5558e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enduser",
+                    "v1.0",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7670,\n  \"msg\": \"string\",\n  \"param\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://openrainbow.com/api/rainbow",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec75e710-bd53-44e9-8768-515a5a69362a",
+    "name": "Rainbow Application Portal Applications Conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.",
+      "type": "text/plain"
+    }
+  }
+}

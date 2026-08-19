@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rainbow Application Portal Applications Messages API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a chat message to a contact or into a bubble (group room). Supports text messages and file attachments."
+        },
+        {
+          "info": {
+            "name": "Get Conversation Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openrainbow.com/api/rainbow/enduser/v1.0/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the conversation"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return messages before this timestamp (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns the message history for a specific conversation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
