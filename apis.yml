@@ -42,6 +42,8 @@ apis:
   humanURL: https://developers.openrainbow.com/doc/hub/api
   baseURL: https://openrainbow.com/api/rainbow
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -102,6 +104,8 @@ apis:
   humanURL: https://developers.openrainbow.com/doc/hub/api
   baseURL: https://openrainbow.com/api/rainbow
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -114,6 +118,8 @@ apis:
   humanURL: https://developers.openrainbow.com/doc/hub/api
   baseURL: https://openrainbow.com/api/rainbow
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
