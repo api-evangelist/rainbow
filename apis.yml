@@ -5,6 +5,18 @@ description: >-
   group chat, voice, video, file sharing, and telephony PBX features through more than 200 APIs, REST interfaces, and
   multi-language SDKs including Node.js, C#, iOS, and Android.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
