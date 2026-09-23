@@ -1,15 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rainbow Application Portal Applications Conversations API
-  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  title: Rainbow Messaging Conversations API
+  description: REST API for sending and receiving messages, managing conversations, and handling chat bubbles (group rooms) within the Rainbow CPaaS platform by Alcatel-Lucent Enterprise. Supports one-to-one chat, group bubbles, file sharing, and message history retrieval.
   version: '1.0'
   contact:
     url: https://developers.openrainbow.com/
   x-tags:
-  - Applications
-  - Administration
-  - OAuth
-  - Provisioning
+  - Messaging
+  - Chat
+  - Conversations
+  - Bubbles
   - CPaaS
 servers:
 - url: https://openrainbow.com/api/rainbow
@@ -59,48 +59,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    MessageResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique message identifier
-        content:
-          type: string
-          description: Message text content
-        from:
-          type: string
-          description: Sender's contact ID
-        to:
-          type: string
-          description: Recipient contact ID or bubble ID
-        type:
-          type: string
-          enum:
-          - chat
-          - groupchat
-        timestamp:
-          type: string
-          format: date-time
-          description: Message creation timestamp
-        status:
-          type: string
-          enum:
-          - sent
-          - delivered
-          - read
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
-          type: string
-          description: Error message
-        param:
-          type: string
-          description: Parameter that caused the error
     Conversation:
       type: object
       properties:
@@ -133,8 +91,50 @@ components:
           type: integer
         offset:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+    MessageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        content:
+          type: string
+          description: Message text content
+        from:
+          type: string
+          description: Sender's contact ID
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+        timestamp:
+          type: string
+          format: date-time
+          description: Message creation timestamp
+        status:
+          type: string
+          enum:
+          - sent
+          - delivered
+          - read
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Bearer token from OAuth2 token endpoint
+      description: Bearer token obtained via Rainbow OAuth2 authentication

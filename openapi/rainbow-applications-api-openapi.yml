@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Rainbow Application Portal Applications API
   description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
@@ -149,11 +149,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ApplicationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Application'
     ApplicationListResponse:
       type: object
       properties:
@@ -180,6 +175,15 @@ components:
           - public
           - private
           default: private
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
     Application:
       type: object
       properties:
@@ -209,15 +213,11 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ErrorResponse:
+    ApplicationResponse:
       type: object
       properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
+        data:
+          $ref: '#/components/schemas/Application'
   securitySchemes:
     BearerAuth:
       type: http

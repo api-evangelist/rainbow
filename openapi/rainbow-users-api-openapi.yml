@@ -1,15 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rainbow Application Portal Applications Users API
-  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  title: Rainbow Contacts Users API
+  description: REST API for searching, listing, and managing contacts in the Rainbow directory. Supports enterprise contact search, personal contact management, and user profile retrieval within the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
   version: '1.0'
   contact:
     url: https://developers.openrainbow.com/
   x-tags:
-  - Applications
-  - Administration
-  - OAuth
-  - Provisioning
+  - Contacts
+  - Directory
+  - Search
   - CPaaS
 servers:
 - url: https://openrainbow.com/api/rainbow
@@ -104,6 +103,15 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Presence'
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
     UpdatePresenceRequest:
       type: object
       required:
@@ -119,6 +127,38 @@ components:
         status:
           type: string
           description: Custom status message
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+    UserProfileResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProfile'
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
     UserProfile:
       type: object
       properties:
@@ -139,49 +179,8 @@ components:
           type: string
         jobTitle:
           type: string
-    UpdateProfileRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
-          type: string
-    Presence:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - online
-          - away
-          - busy
-          - dnd
-          - offline
-          description: Presence status
-        statusMessage:
-          type: string
-          description: Custom status message
-        since:
-          type: string
-          format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
-    UserProfileResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserProfile'
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Bearer token from OAuth2 token endpoint
+      description: Bearer token obtained via Rainbow OAuth2 authentication

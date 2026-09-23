@@ -1,15 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rainbow Application Portal Applications Contacts API
-  description: The Rainbow Application Portal API allows developers to register and manage Rainbow applications, configure OAuth clients, and perform administrative operations on the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
+  title: Rainbow Contacts API
+  description: REST API for searching, listing, and managing contacts in the Rainbow directory. Supports enterprise contact search, personal contact management, and user profile retrieval within the Rainbow CPaaS platform by Alcatel-Lucent Enterprise.
   version: '1.0'
   contact:
     url: https://developers.openrainbow.com/
   x-tags:
-  - Applications
-  - Administration
-  - OAuth
-  - Provisioning
+  - Contacts
+  - Directory
+  - Search
   - CPaaS
 servers:
 - url: https://openrainbow.com/api/rainbow
@@ -111,6 +110,15 @@ components:
           type: integer
         offset:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
     Contact:
       type: object
       properties:
@@ -149,6 +157,11 @@ components:
           type: string
         jobTitle:
           type: string
+    ContactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contact'
     Presence:
       type: object
       properties:
@@ -167,22 +180,8 @@ components:
         since:
           type: string
           format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
-    ContactResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Contact'
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Bearer token from OAuth2 token endpoint
+      description: Bearer token obtained via Rainbow OAuth2 authentication
