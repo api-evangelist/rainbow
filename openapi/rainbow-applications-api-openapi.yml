@@ -149,15 +149,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ApplicationListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        total:
-          type: integer
     CreateApplicationRequest:
       type: object
       required:
@@ -175,6 +166,11 @@ components:
           - public
           - private
           default: private
+    ApplicationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Application'
     ErrorResponse:
       type: object
       properties:
@@ -213,11 +209,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ApplicationResponse:
+    ApplicationListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Application'
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        total:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http

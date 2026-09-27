@@ -97,19 +97,29 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ContactListResponse:
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
+    ContactResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
+          $ref: '#/components/schemas/Contact'
     ErrorResponse:
       type: object
       properties:
@@ -157,29 +167,19 @@ components:
           type: string
         jobTitle:
           type: string
-    ContactResponse:
+    ContactListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Contact'
-    Presence:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - online
-          - away
-          - busy
-          - dnd
-          - offline
-          description: Presence status
-        statusMessage:
-          type: string
-          description: Custom status message
-        since:
-          type: string
-          format: date-time
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http

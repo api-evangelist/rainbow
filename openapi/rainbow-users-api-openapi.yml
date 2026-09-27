@@ -98,20 +98,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    PresenceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Presence'
-    UpdateProfileRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
-          type: string
     UpdatePresenceRequest:
       type: object
       required:
@@ -127,20 +113,6 @@ components:
         status:
           type: string
           description: Custom status message
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
-    UserProfileResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserProfile'
     Presence:
       type: object
       properties:
@@ -159,6 +131,24 @@ components:
         since:
           type: string
           format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
     UserProfile:
       type: object
       properties:
@@ -179,6 +169,16 @@ components:
           type: string
         jobTitle:
           type: string
+    PresenceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Presence'
+    UserProfileResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProfile'
   securitySchemes:
     BearerAuth:
       type: http

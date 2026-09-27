@@ -121,6 +121,11 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    BubbleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Bubble'
     Bubble:
       type: object
       properties:
@@ -184,11 +189,6 @@ components:
             $ref: '#/components/schemas/Bubble'
         total:
           type: integer
-    BubbleResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Bubble'
   securitySchemes:
     BearerAuth:
       type: http

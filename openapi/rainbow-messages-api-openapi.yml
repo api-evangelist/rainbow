@@ -102,6 +102,36 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+    SendMessageRequest:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          description: Text content of the message
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+          default: chat
+          description: Message type - chat for 1-to-1, groupchat for bubbles
     MessageResponse:
       type: object
       properties:
@@ -132,36 +162,6 @@ components:
           - sent
           - delivered
           - read
-    SendMessageRequest:
-      type: object
-      required:
-      - content
-      properties:
-        content:
-          type: string
-          description: Text content of the message
-        to:
-          type: string
-          description: Recipient contact ID or bubble ID
-        type:
-          type: string
-          enum:
-          - chat
-          - groupchat
-          default: chat
-          description: Message type - chat for 1-to-1, groupchat for bubbles
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
-          type: string
-          description: Error message
-        param:
-          type: string
-          description: Parameter that caused the error
     MessageListResponse:
       type: object
       properties:

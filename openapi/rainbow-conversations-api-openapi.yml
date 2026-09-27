@@ -59,6 +59,31 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+    ConversationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     Conversation:
       type: object
       properties:
@@ -78,31 +103,6 @@ components:
         unreadCount:
           type: integer
           description: Number of unread messages
-    ConversationListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Conversation'
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
-          type: string
-          description: Error message
-        param:
-          type: string
-          description: Parameter that caused the error
     MessageResponse:
       type: object
       properties:
