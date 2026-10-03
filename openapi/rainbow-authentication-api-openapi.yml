@@ -76,6 +76,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
     OAuthTokenResponse:
       type: object
       properties:
@@ -92,15 +101,6 @@ components:
         scope:
           type: string
           description: Granted scopes
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -113,24 +113,6 @@ components:
         status:
           type: string
           description: Custom status message
-    Presence:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - online
-          - away
-          - busy
-          - dnd
-          - offline
-          description: Presence status
-        statusMessage:
-          type: string
-          description: Custom status message
-        since:
-          type: string
-          format: date-time
     ErrorResponse:
       type: object
       properties:
@@ -139,15 +121,6 @@ components:
         msg:
           type: string
         param:
-          type: string
-    UpdateProfileRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
           type: string
     UserProfile:
       type: object
@@ -179,6 +152,33 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/UserProfile'
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

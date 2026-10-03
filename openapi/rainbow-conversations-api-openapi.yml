@@ -59,50 +59,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
-          type: string
-          description: Error message
-        param:
-          type: string
-          description: Parameter that caused the error
-    ConversationListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Conversation'
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    Conversation:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique conversation identifier
-        type:
-          type: string
-          enum:
-          - user
-          - bubble
-        peerId:
-          type: string
-          description: Contact ID or bubble ID
-        lastMessage:
-          $ref: '#/components/schemas/MessageResponse'
-        unreadCount:
-          type: integer
-          description: Number of unread messages
     MessageResponse:
       type: object
       properties:
@@ -133,6 +89,50 @@ components:
           - sent
           - delivered
           - read
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique conversation identifier
+        type:
+          type: string
+          enum:
+          - user
+          - bubble
+        peerId:
+          type: string
+          description: Contact ID or bubble ID
+        lastMessage:
+          $ref: '#/components/schemas/MessageResponse'
+        unreadCount:
+          type: integer
+          description: Number of unread messages
+    ConversationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
   securitySchemes:
     BearerAuth:
       type: http
