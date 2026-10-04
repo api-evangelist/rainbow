@@ -121,43 +121,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    CreateBubbleRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the bubble
-        topic:
-          type: string
-          description: Topic or description of the bubble
-        users:
-          type: array
-          items:
-            type: string
-          description: Initial list of contact IDs to invite
-    BubbleListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bubble'
-        total:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
-          type: string
-          description: Error message
-        param:
-          type: string
-          description: Parameter that caused the error
     BubbleResponse:
       type: object
       properties:
@@ -189,6 +152,43 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        msg:
+          type: string
+          description: Error message
+        param:
+          type: string
+          description: Parameter that caused the error
+    CreateBubbleRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the bubble
+        topic:
+          type: string
+          description: Topic or description of the bubble
+        users:
+          type: array
+          items:
+            type: string
+          description: Initial list of contact IDs to invite
+    BubbleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bubble'
+        total:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http

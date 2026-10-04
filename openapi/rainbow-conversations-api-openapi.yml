@@ -59,36 +59,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    MessageResponse:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        code:
+          type: integer
+          description: Error code
+        msg:
           type: string
-          description: Unique message identifier
-        content:
+          description: Error message
+        param:
           type: string
-          description: Message text content
-        from:
-          type: string
-          description: Sender's contact ID
-        to:
-          type: string
-          description: Recipient contact ID or bubble ID
-        type:
-          type: string
-          enum:
-          - chat
-          - groupchat
-        timestamp:
-          type: string
-          format: date-time
-          description: Message creation timestamp
-        status:
-          type: string
-          enum:
-          - sent
-          - delivered
-          - read
+          description: Parameter that caused the error
     Conversation:
       type: object
       properties:
@@ -121,18 +103,36 @@ components:
           type: integer
         offset:
           type: integer
-    ErrorResponse:
+    MessageResponse:
       type: object
       properties:
-        code:
-          type: integer
-          description: Error code
-        msg:
+        id:
           type: string
-          description: Error message
-        param:
+          description: Unique message identifier
+        content:
           type: string
-          description: Parameter that caused the error
+          description: Message text content
+        from:
+          type: string
+          description: Sender's contact ID
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+        timestamp:
+          type: string
+          format: date-time
+          description: Message creation timestamp
+        status:
+          type: string
+          enum:
+          - sent
+          - delivered
+          - read
   securitySchemes:
     BearerAuth:
       type: http

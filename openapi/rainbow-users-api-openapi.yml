@@ -113,14 +113,19 @@ components:
         status:
           type: string
           description: Custom status message
-    ErrorResponse:
+    UserProfileResponse:
       type: object
       properties:
-        code:
-          type: integer
-        msg:
+        data:
+          $ref: '#/components/schemas/UserProfile'
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
           type: string
-        param:
+        lastName:
+          type: string
+        jobTitle:
           type: string
     UserProfile:
       type: object
@@ -142,25 +147,20 @@ components:
           type: string
         jobTitle:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
     PresenceResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Presence'
-    UserProfileResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserProfile'
-    UpdateProfileRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
-          type: string
     Presence:
       type: object
       properties:
