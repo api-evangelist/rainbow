@@ -1,21 +1,19 @@
-# Kin Score artifact — rainbow — 2026-08-25T154045
+# Kin Score artifact — rainbow — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: rainbow
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 39.1
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 36.8
   band: thin
   facets:
-    discoverability: 74.1
-    contract_quality: 64.4
-    governance: 28.8
+    discoverability: 78.6
+    contract_quality: 58.7
+    contract_governance: 27.3
     operational_transparency: 10.5
     developer_ergonomics: 19.0
-    commercial_clarity: 34.2
-    contract_governance: 28.8
     access_clarity: 34.2
   agent_readiness:
     score: 25.5
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Telecommunications
     regime_id: telecommunications
-    score: 30.6
+    score: 18.3
     matched_via: tags
   provenance:
     agentic_access: derived
