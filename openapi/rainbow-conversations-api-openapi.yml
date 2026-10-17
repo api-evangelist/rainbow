@@ -59,6 +59,36 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    MessageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        content:
+          type: string
+          description: Message text content
+        from:
+          type: string
+          description: Sender's contact ID
+        to:
+          type: string
+          description: Recipient contact ID or bubble ID
+        type:
+          type: string
+          enum:
+          - chat
+          - groupchat
+        timestamp:
+          type: string
+          format: date-time
+          description: Message creation timestamp
+        status:
+          type: string
+          enum:
+          - sent
+          - delivered
+          - read
     ErrorResponse:
       type: object
       properties:
@@ -103,36 +133,6 @@ components:
           type: integer
         offset:
           type: integer
-    MessageResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique message identifier
-        content:
-          type: string
-          description: Message text content
-        from:
-          type: string
-          description: Sender's contact ID
-        to:
-          type: string
-          description: Recipient contact ID or bubble ID
-        type:
-          type: string
-          enum:
-          - chat
-          - groupchat
-        timestamp:
-          type: string
-          format: date-time
-          description: Message creation timestamp
-        status:
-          type: string
-          enum:
-          - sent
-          - delivered
-          - read
   securitySchemes:
     BearerAuth:
       type: http

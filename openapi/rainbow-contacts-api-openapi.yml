@@ -110,38 +110,11 @@ components:
           type: integer
         offset:
           type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
     ContactResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Contact'
-    Presence:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - online
-          - away
-          - busy
-          - dnd
-          - offline
-          description: Presence status
-        statusMessage:
-          type: string
-          description: Custom status message
-        since:
-          type: string
-          format: date-time
     Contact:
       type: object
       properties:
@@ -179,6 +152,33 @@ components:
         company:
           type: string
         jobTitle:
+          type: string
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
           type: string
   securitySchemes:
     BearerAuth:

@@ -98,6 +98,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    UserProfileResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProfile'
+    UpdateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
     UpdatePresenceRequest:
       type: object
       required:
@@ -113,20 +127,38 @@ components:
         status:
           type: string
           description: Custom status message
-    UserProfileResponse:
+    Presence:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - online
+          - away
+          - busy
+          - dnd
+          - offline
+          description: Presence status
+        statusMessage:
+          type: string
+          description: Custom status message
+        since:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        param:
+          type: string
+    PresenceResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/UserProfile'
-    UpdateProfileRequest:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
-          type: string
+          $ref: '#/components/schemas/Presence'
     UserProfile:
       type: object
       properties:
@@ -147,38 +179,6 @@ components:
           type: string
         jobTitle:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        param:
-          type: string
-    PresenceResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Presence'
-    Presence:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - online
-          - away
-          - busy
-          - dnd
-          - offline
-          description: Presence status
-        statusMessage:
-          type: string
-          description: Custom status message
-        since:
-          type: string
-          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

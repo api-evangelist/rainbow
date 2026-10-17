@@ -166,6 +166,20 @@ components:
           - public
           - private
           default: private
+    ApplicationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Application'
+    ApplicationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        total:
+          type: integer
     Application:
       type: object
       properties:
@@ -195,15 +209,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ApplicationListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        total:
-          type: integer
     ErrorResponse:
       type: object
       properties:
@@ -213,11 +218,6 @@ components:
           type: string
         param:
           type: string
-    ApplicationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Application'
   securitySchemes:
     BearerAuth:
       type: http
