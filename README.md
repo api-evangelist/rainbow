@@ -1,4 +1,4 @@
-# Rainbow (rainbow)
+# Rainbow
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,112 +66,168 @@
 
 Rainbow is a CPaaS platform from Alcatel-Lucent Enterprise (ALE) that lets developers enrich applications with chat, group chat, voice, video, file sharing, and telephony PBX features through more than 200 APIs, REST interfaces, and multi-language SDKs including Node.js, C#, iOS, and Android.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/rainbow/refs/heads/main/apis.yml)
+**Areas:** Communications · CPaaS · Chat · Voice · Video · Telephony · Messaging · Collaboration · Unified Communications
 
-## Scope
+## Rainbow on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Rainbow is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/rainbow/](https://apis.io/providers/rainbow/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Communications
-- CPaaS
-- Chat
-- Voice
-- Video
-- Telephony
-- Messaging
-- Collaboration
-- Unified Communications
+- [Rainbow Applications API](https://apis.io/apis/rainbow/rainbow-applications-api/) — Register and manage developer applications
+- [Rainbow Authentication API](https://apis.io/apis/rainbow/rainbow-authentication-api/) — OAuth2 token management
+- [Rainbow Bubbles API](https://apis.io/apis/rainbow/rainbow-bubbles-api/) — Manage group chat rooms (bubbles)
+- [Rainbow Contacts API](https://apis.io/apis/rainbow/rainbow-contacts-api/) — Manage and search contacts
+- [Rainbow Conversations API](https://apis.io/apis/rainbow/rainbow-conversations-api/) — Manage one-to-one and group conversations
+- [Rainbow Messages API](https://apis.io/apis/rainbow/rainbow-messages-api/) — Send and receive chat messages
+- [Rainbow Users API](https://apis.io/apis/rainbow/rainbow-users-api/) — User profile and presence operations
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-06
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Rainbow Application Portal API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Rainbow Application Portal REST API allows developers to manage Rainbow applications, register OAuth clients, and access provisioning and administration functions for the Rainbow platform.
+- [Rainbow Agentic Access](https://apis.io/agentic-access/rainbow/rainbow-agentic-access/)
 
-- **Human URL:** [https://developers.openrainbow.com/doc/hub/api](https://developers.openrainbow.com/doc/hub/api)
-- **Base URL:** `https://openrainbow.com/api/rainbow`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Applications
-- Administration
-- OAuth
-- Provisioning
+- [Rainbow Contact](https://apis.io/schemas/rainbow/rainbow-contact/)
+- [Rainbow Message](https://apis.io/schemas/rainbow/rainbow-message/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developers.openrainbow.com/doc/hub/api)
-- [OpenAPI](openapi/rainbow-application-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rainbow-application.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rainbow-application.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Rainbow Messaging API
+- [Rainbow Message Structure](https://apis.io/json-structure/rainbow/rainbow-message-structure/)
 
-REST API for sending and receiving messages, managing conversations, and handling chat bubbles (group rooms) within the Rainbow platform.
+#### JSON-LD (1)
 
-- **Human URL:** [https://developers.openrainbow.com/](https://developers.openrainbow.com/)
-- **Base URL:** `https://openrainbow.com/api/rainbow`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Rainbow Context](https://apis.io/jsonld/rainbow/rainbow-context/)
 
-- Messaging
-- Chat
-- Conversations
-- Bubbles
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://developers.openrainbow.com/doc/hub/api)
-- [OpenAPI](openapi/rainbow-messaging-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rainbow-messaging.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rainbow-messaging.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Rainbow CPaaS Vocabulary](https://apis.io/vocabularies/rainbow/rainbow-vocabulary/)
 
-### Rainbow Contacts API
+#### Examples (3)
 
-REST API for searching, listing, and managing contacts in the Rainbow directory, including enterprise contacts and public profiles.
+Example requests and responses.
 
-- **Human URL:** [https://developers.openrainbow.com/](https://developers.openrainbow.com/)
-- **Base URL:** `https://openrainbow.com/api/rainbow`
+- [Rainbow Get Oauth Token Example](https://apis.io/examples/rainbow/rainbow-get-oauth-token-example/)
+- [Rainbow Search Contacts Example](https://apis.io/examples/rainbow/rainbow-search-contacts-example/)
+- [Rainbow Send Message Example](https://apis.io/examples/rainbow/rainbow-send-message-example/)
 
-#### Tags
+#### Collections (10)
 
-- Contacts
-- Directory
-- Search
+Postman and Open Collection request collections.
 
-#### Properties
+- [Rainbow Application Portal API](https://apis.io/collections/rainbow/open-rainbow-application/)
+- [Rainbow Application Portal Applications API](https://apis.io/collections/rainbow/open-rainbow-applications-api/)
+- [Rainbow Application Portal Applications Authentication API](https://apis.io/collections/rainbow/open-rainbow-authentication-api/)
+- [Rainbow Application Portal Applications Bubbles API](https://apis.io/collections/rainbow/open-rainbow-bubbles-api/)
+- [Rainbow Contacts API](https://apis.io/collections/rainbow/open-rainbow-contacts/)
+- [Rainbow Application Portal Applications Contacts API](https://apis.io/collections/rainbow/open-rainbow-contacts-api/)
+- [Rainbow Application Portal Applications Conversations API](https://apis.io/collections/rainbow/open-rainbow-conversations-api/)
+- [Rainbow Application Portal Applications Messages API](https://apis.io/collections/rainbow/open-rainbow-messages-api/)
+- [Rainbow Messaging API](https://apis.io/collections/rainbow/open-rainbow-messaging/)
+- [Rainbow Application Portal Applications Users API](https://apis.io/collections/rainbow/open-rainbow-users-api/)
 
-- [Documentation](https://developers.openrainbow.com/doc/hub/api)
-- [OpenAPI](openapi/rainbow-contacts-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rainbow-contacts.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rainbow-contacts.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-## Common Properties
+Spectral rulesets for the provider's contracts.
 
-- [LinkedIn](https://www.linkedin.com/company/openrainbow)
+- [Rainbow — jsonschema rules](https://apis.io/rules/rainbow/rainbow-jsonschema-spectral-rules/)
+- [Rainbow API Rules](https://apis.io/rules/rainbow/rainbow-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Rainbow Authentication](https://apis.io/security/rainbow/rainbow-authentication/)
+- [Rainbow Domain Security](https://apis.io/security/rainbow/rainbow-domain-security/)
+- [Rainbow Trust Center](https://apis.io/security/rainbow/rainbow-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Rainbow Plans Pricing](https://apis.io/plans/rainbow/rainbow-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rainbow Rate Limits](https://apis.io/rate-limits/rainbow/rainbow-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Rainbow Finops](https://apis.io/finops/rainbow/rainbow-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.openrainbow.com)
-- [Developer](https://developers.openrainbow.com/)
-- [Sign Up](https://hub.openrainbow.com/)
-- [Git Hub](https://github.com/Rainbow-CPaaS)
-- [S D K Node](https://github.com/Rainbow-CPaaS/Rainbow-Node-SDK)
-- [S D K I O S](https://github.com/Rainbow-CPaaS/Rainbow-iOS-SDK)
-- [S D K C S](https://github.com/Rainbow-CPaaS/Rainbow-CSharp-SDK-Samples)
-- [C L I](https://github.com/Rainbow-CPaaS/Rainbow-CLI-SDK)
-- [Spectral Rules](rules/rainbow-rules.yml)
-- [JSON-LD](json-ld/rainbow-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/rainbow-vocabulary.yml)
-- [L L Ms Txt](https://developers.openrainbow.com/llms.txt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 58.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 26.3 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.3** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/rainbow/](https://apis.io/providers/rainbow/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Rainbow: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/rainbow/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
